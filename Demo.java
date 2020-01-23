@@ -49,7 +49,7 @@ class CachingBackendService implements TodayService {
 		}
 	}
 
-	private CacheEntry cache;
+	volatile private CacheEntry cache;
 	final private TodayService underlyingService;
 	final private long millisDuration;
 
@@ -104,7 +104,7 @@ class AsynchronousTodayService implements TodayService {
 //Asynchronous TodayService Decorator ALMOST guarantees success
 class AsynchronousTodayServiceWithFallback extends AsynchronousTodayService {
 	
-	String fallback;
+	volatile String fallback;
 
 	AsynchronousTodayServiceWithFallback(long millisAcceptableDelay) {
 		super(millisAcceptableDelay);
