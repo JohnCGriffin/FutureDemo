@@ -1,5 +1,5 @@
 # FutureDemo
-Quick show of handling possibly slow backend service
+Quick show of handling possibly slow backend service, featuring FutureTask<T>.
 
 ## Basic Service Definition
 An interface TodayService describes a method ```todayAsString``` that
