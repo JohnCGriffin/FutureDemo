@@ -74,7 +74,8 @@ class CachingBackendService implements TodayService {
 // Asynchronous TodayService Decorator guarantees time-bound success or Exception
 class AsynchronousTodayService implements TodayService {
 
-	final static ExecutorService executor = Executors.newFixedThreadPool(4);
+	// For instance, MFServer has 2 instances available to answer requests
+	final static ExecutorService executor = Executors.newFixedThreadPool(2);
 
 	final private TodayService underlying;
 	final private long millisAcceptableDelay;
