@@ -17,4 +17,4 @@ delivers the current date string.
 ```AsynchronousTodayService``` decorates the caching backend service with a timeout.  The answer will arrive in time or fail in the specified duration.
 
 #### AsynchronousTodayServiceWithFallback
-```AsynchronousTodayServiceWithFallback``` extends ```AsynchronousTodayService``` so that if all else fails, it returns the previous result.  This would likely be the place where someone should be notified that a problem exists.  That problem, however, will be hidden from the end user.  The only time an TimeoutException can occur with an ```AsynchronousTodayServiceWithFallback``` is before it successfully arrives at a result the first time.
+```AsynchronousTodayServiceWithFallback``` extends ```AsynchronousTodayService``` so that if all else fails, it returns the previous result.  _This would likely be the place where someone should be notified that a problem exists._  That problem, however, will be hidden from the end user.  The only time an TimeoutException can occur with an ```AsynchronousTodayServiceWithFallback``` is before it successfully arrives at a result the first time.
