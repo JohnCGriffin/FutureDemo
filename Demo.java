@@ -125,11 +125,9 @@ class AsynchronousTodayServiceWithFallback extends AsynchronousTodayService {
 }
 
 public class Demo {
-
-	public static void main(String[] args) {
-		TodayService theService = new AsynchronousTodayService(7000);
-		//TodayService theService = new AsynchronousTodayServiceWithFallback(7000);
-		System.out.println("Future demo");
+	
+	static void demo(TodayService service)
+	{
 		for (;;) {
 			try {
 				Thread.sleep(1000);
@@ -138,13 +136,22 @@ public class Demo {
 
 			long start = System.currentTimeMillis();
 			try {
-				System.out.printf("RESULT: %s after %d ms\n", theService.todayAsString(),
+				System.out.printf("RESULT: %s after %d ms\n", service.todayAsString(),
 						System.currentTimeMillis() - start);
 			} catch (TimeoutException e) {
-				System.err.printf("**** REQUEST timed out after %d ms\n", System.currentTimeMillis() - start);
+				long duration = System.currentTimeMillis() - start;
+				System.err.printf("**** REQUEST timed out after %d ms\n", duration);
 			}
 			System.out.flush();
-		}
+		}		
+	}
+
+	public static void main(String[] args) {
+		TodayService theService = new BackendService();
+		//TodayService theService = new CachingBackendService(new BackendService(), 5000);
+		//TodayService theService = new AsynchronousTodayService(7000);
+		//TodayService theService = new AsynchronousTodayServiceWithFallback(7000);
+		demo(theService);
 	}
 
 }
